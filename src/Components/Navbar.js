@@ -11,7 +11,7 @@ import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems } from './listItems';
+import { userAuthenticatedListItems, userUnAuthenticatedListItems } from './listItems';
 
 const drawerWidth = 240;
 
@@ -60,11 +60,13 @@ const Drawer = styled(MuiDrawer, {
     }
 }));
 
-function DashboardContent() {
+function DashboardContent(props) {
     const [open, setOpen] = useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
+    const { authenticatedUser } = props;
+
     return (
         <div>
             <AppBar position='absolute' open={open}>
@@ -115,12 +117,14 @@ function DashboardContent() {
                     </IconButton>
                 </Toolbar>
                 <Divider />
-                <List component='nav'>{mainListItems}</List>
+                <List component='nav'>
+                    {authenticatedUser ? userAuthenticatedListItems : userUnAuthenticatedListItems}
+                </List>
             </Drawer>
         </div>
     );
 }
 
-export default function Dashboard() {
-    return <DashboardContent />;
+export default function Dashboard(props) {
+    return <DashboardContent authenticatedUser={props.authenticatedUser} />;
 }

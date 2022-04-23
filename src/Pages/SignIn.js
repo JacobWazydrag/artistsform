@@ -9,7 +9,7 @@ import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../aws-exports';
 Amplify.configure(awsExports);
 
-function Profile() {
+function SignIn() {
     const [user, setUser] = useState(null);
     useEffect(() => {
         checkUser();
@@ -19,10 +19,6 @@ function Profile() {
         const user = await Auth.currentAuthenticatedUser();
         setUser(user);
     }
-
-    if (!user) {
-        return null;
-    } else {
         return (
             <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
                 <Grid container spacing={3}>
@@ -34,14 +30,12 @@ function Profile() {
                                 flexDirection: 'column'
                             }}
                         >
-                            <h1>{user.username}</h1>
-                            <h2>{user.attributes.email}</h2>
+                            Welcome!
                         </Paper>
                     </Grid>
                 </Grid>
             </Container>
         );
-    }
 }
 
-export default withAuthenticator(Profile);
+export default withAuthenticator(SignIn);
