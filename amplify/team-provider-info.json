@@ -1,0 +1,30 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-artspaceforms-prod-155530-authRole",
+      "UnauthRoleArn": "arn:aws:iam::621367702086:role/amplify-artspaceforms-prod-155530-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::621367702086:role/amplify-artspaceforms-prod-155530-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-artspaceforms-prod-155530-deployment",
+      "UnauthRoleName": "amplify-artspaceforms-prod-155530-unauthRole",
+      "StackName": "amplify-artspaceforms-prod-155530",
+      "StackId": "arn:aws:cloudformation:us-east-2:621367702086:stack/amplify-artspaceforms-prod-155530/8c3abbd0-c27e-11ec-9607-0a3463e4c534",
+      "AmplifyAppId": "d22ji2qwvlmh6r"
+    },
+    "categories": {
+      "auth": {
+        "artspaceforms155ed2da155ed2da": {
+          "facebookAppId": "298480202428481",
+          "googleClientId": "167869457579-09ne8ssnnjl6d7gf0l8boe81q0gm2mhb.apps.googleusercontent.com",
+          "amazonAppId": "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"
+        }
+      },
+      "function": {
+        "AdminQueries3d917b0f": {
+          "deploymentBucketName": "amplify-artspaceforms-prod-155530-deployment",
+          "s3Key": "amplify-builds/AdminQueries3d917b0f-7a444e68787531367a54-build.zip"
+        }
+      }
+    }
+  }
+}
