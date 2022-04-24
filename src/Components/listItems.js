@@ -6,64 +6,91 @@ import ListItemText from '@mui/material/ListItemText';
 import { Link, Route } from 'react-router-dom';
 import { authenticatedUserlinks, unAuthenticatedUserlinks } from './links';
 import styled from 'styled-components';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: darkslategrey;
 `;
 
-export const userAuthenticatedListItems = authenticatedUserlinks.map((link, index) => {
-    return (
-        <React.Fragment key={link.title + index}>
-            <StyledLink to={link.url}>
-                <ListItemButton>
-                    <ListItemIcon>{link.icon}</ListItemIcon>
-                    <ListItemText
-                        style={{ textDecoration: 'none' }}
-                        primary={link.title}
-                    />
-                </ListItemButton>
-            </StyledLink>
-        </React.Fragment>
-    );
-});
+export const userAuthenticatedListItems = authenticatedUserlinks.map(
+    (link, index) => {
+        if (link.component) {
+            return (
+                <React.Fragment key={link.title + index}>
+                    <StyledLink to={link.url}>
+                        <ListItemButton>
+                            <ListItemIcon>{link.icon}</ListItemIcon>
+                            <ListItemText
+                                style={{ textDecoration: 'none' }}
+                                primary={link.title}
+                            />
+                        </ListItemButton>
+                    </StyledLink>
+                </React.Fragment>
+            );
+        } else {
+            return (
+                <Authenticator key={link.title + index}>
+                    {({ signOut, user }) => (
+                        <ListItemButton onClick={signOut}>
+                            <ListItemIcon>{link.icon}</ListItemIcon>
+                            <ListItemText
+                                style={{ textDecoration: 'none' }}
+                                primary={link.title}
+                            />
+                        </ListItemButton>
+                    )}
+                </Authenticator>
+            );
+        }
+    }
+);
 
-export const userAuthenticatedRouteComponents = authenticatedUserlinks.map((link, index) => {
-    return (
-        <Route
-            key={index + link.title + index}
-            path={link.url}
-            element={link.component}
-            exact
-        ></Route>
-    );
-});
-export const userUnAuthenticatedListItems = unAuthenticatedUserlinks.map((link, index) => {
-    return (
-        <React.Fragment key={link.title + index}>
-            <StyledLink to={link.url}>
-                <ListItemButton>
-                    <ListItemIcon>{link.icon}</ListItemIcon>
-                    <ListItemText
-                        style={{ textDecoration: 'none' }}
-                        primary={link.title}
-                    />
-                </ListItemButton>
-            </StyledLink>
-        </React.Fragment>
-    );
-});
+export const userAuthenticatedRouteComponents = authenticatedUserlinks.map(
+    (link, index) => {
+        if (link.component) {
+            return (
+                <Route
+                    key={index + link.title + index}
+                    path={link.url}
+                    element={link.component}
+                    exact
+                ></Route>
+            );
+        }
+    }
+);
+export const userUnAuthenticatedListItems = unAuthenticatedUserlinks.map(
+    (link, index) => {
+        return (
+            <React.Fragment key={link.title + index}>
+                <StyledLink to={link.url}>
+                    <ListItemButton>
+                        <ListItemIcon>{link.icon}</ListItemIcon>
+                        <ListItemText
+                            style={{ textDecoration: 'none' }}
+                            primary={link.title}
+                        />
+                    </ListItemButton>
+                </StyledLink>
+            </React.Fragment>
+        );
+    }
+);
 
-export const userUnAuthenticatedRouteComponents = unAuthenticatedUserlinks.map((link, index) => {
-    return (
-        <Route
-            key={index + link.title + index}
-            path={link.url}
-            element={link.component}
-            exact
-        ></Route>
-    );
-});
+export const userUnAuthenticatedRouteComponents = unAuthenticatedUserlinks.map(
+    (link, index) => {
+        return (
+            <Route
+                key={index + link.title + index}
+                path={link.url}
+                element={link.component}
+                exact
+            ></Route>
+        );
+    }
+);
 
 export const secondaryListItems = (
     <React.Fragment>

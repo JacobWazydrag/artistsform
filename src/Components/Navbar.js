@@ -65,8 +65,8 @@ function DashboardContent(props) {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    const { authenticatedUser } = props;
-
+    const { authenticatedUser, onSignOut } = props;
+    
     return (
         <div>
             <AppBar position='absolute' open={open}>
@@ -96,11 +96,11 @@ function DashboardContent(props) {
                     >
                         Dashboard
                     </Typography>
-                    <IconButton color='inherit'>
+                    {/* <IconButton color='inherit'>
                         <Badge badgeContent={4} color='secondary'>
                             <NotificationsIcon />
                         </Badge>
-                    </IconButton>
+                    </IconButton> */}
                 </Toolbar>
             </AppBar>
             <Drawer variant='permanent' open={open}>
