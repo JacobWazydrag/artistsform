@@ -7,10 +7,10 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+// import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+// import NotificationsIcon from '@mui/icons-material/Notifications';
 import { userAuthenticatedListItems, userUnAuthenticatedListItems } from './listItems';
 
 const drawerWidth = 240;
@@ -65,7 +65,7 @@ function DashboardContent(props) {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    const { authenticatedUser, onSignOut } = props;
+    const { authenticatedUser } = props;
     
     return (
         <div>

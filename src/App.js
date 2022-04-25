@@ -11,15 +11,10 @@ import Navbar from './Components/Navbar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Copyright from './Components/copyright';
-import { Auth, Hub } from 'aws-amplify';
+import { Auth, Hub, API, graphqlOperation } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
-// import { Amplify } from 'aws-amplify';
-// import Dashboard from './Components/Dashboard';
-// import { Authenticator } from '@aws-amplify/ui-react';
-// import '@aws-amplify/ui-react/styles.css';
-
-// import awsExports from './aws-exports';
-// Amplify.configure(awsExports);
+import { createArtwork } from './graphql/mutations';
+import { Button } from '@mui/material';
 
 const mdTheme = createTheme();
 
@@ -49,6 +44,21 @@ function App() {
         authListener();
     }, []);
 
+    const createArtworks = (event) => {
+        const artwork = {
+            id: 1,
+            title: 'number one',
+            description: 'description test',
+            status: 'sold!'
+        };
+
+        const input = {
+            artwork
+        };
+        console.log(input);
+        API.graphql(graphqlOperation(createArtwork,{ input: artwork }));
+    };
+
     return (
         <Authenticator socialProviders={['amazon', 'facebook', 'google']}>
             {({ signOut, user }) => (
@@ -57,6 +67,13 @@ function App() {
                         <CssBaseline />
                         <BrowserRouter>
                             <Navbar authenticatedUser={authenticatedUser} />
+                            <Button
+                                onClick={() => {
+                                    createArtworks();
+                                }}
+                            >
+                                createArtwork
+                            </Button>
                             <Box
                                 component='main'
                                 sx={{

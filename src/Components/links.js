@@ -7,9 +7,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Artwork from '../Pages/Artwork';
 import Home from '../Pages/Home';
 import Profile from '../Pages/Profile';
-//regular imports
-import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
-
 
 export const authenticatedUserlinks = [
     { 'title': 'Artworks', 'url': '/Artworks', 'icon': <PaletteIcon />, "component": <Artwork/> },
