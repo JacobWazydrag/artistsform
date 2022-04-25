@@ -37,7 +37,6 @@ function App() {
                     break;
             }
         });
-
         try {
             await Auth.currentAuthenticatedUser();
             setAuthenticatedUser(true);
@@ -52,35 +51,35 @@ function App() {
 
     return (
         <Authenticator socialProviders={['amazon', 'facebook', 'google']}>
-            {({signOut, user}) => (
+            {({ signOut, user }) => (
                 <ThemeProvider theme={mdTheme}>
-                <Box sx={{ display: 'flex' }}>
-                    <CssBaseline />
-                    <BrowserRouter>
-                        <Navbar authenticatedUser={authenticatedUser} />
-                        <Box
-                            component='main'
-                            sx={{
-                                backgroundColor: (theme) =>
-                                theme.palette.mode === 'light'
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[900],
-                                flexGrow: 1,
-                                height: '100vh',
-                                overflow: 'hidden'
-                            }}
+                    <Box sx={{ display: 'flex' }}>
+                        <CssBaseline />
+                        <BrowserRouter>
+                            <Navbar authenticatedUser={authenticatedUser} />
+                            <Box
+                                component='main'
+                                sx={{
+                                    backgroundColor: (theme) =>
+                                        theme.palette.mode === 'light'
+                                            ? theme.palette.grey[100]
+                                            : theme.palette.grey[900],
+                                    flexGrow: 1,
+                                    height: '100vh',
+                                    overflow: 'hidden'
+                                }}
                             >
-                            <Toolbar />
-                            <Routes>
-                                {authenticatedUser
-                                    ? userAuthenticatedRouteComponents
-                                    : userUnAuthenticatedRouteComponents}
-                            </Routes>
-                            <Copyright />
-                        </Box>
-                    </BrowserRouter>
-                </Box>
-            </ThemeProvider>
+                                <Toolbar />
+                                <Routes>
+                                    {authenticatedUser
+                                        ? userAuthenticatedRouteComponents
+                                        : userUnAuthenticatedRouteComponents}
+                                </Routes>
+                                <Copyright />
+                            </Box>
+                        </BrowserRouter>
+                    </Box>
+                </ThemeProvider>
             )}
         </Authenticator>
     );

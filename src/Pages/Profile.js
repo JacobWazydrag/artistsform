@@ -1,18 +1,18 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { AccountProfile } from '../Components/Profile/accountProfile';
 import { AccountProfileDetails } from '../Components/Profile/accountDetails';
-
 import { Amplify } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-
 import awsExports from '../aws-exports';
+
 Amplify.configure(awsExports);
 
 function Profile() {
+
     return (
         <Authenticator>
             {({ signOut, user }) => (
@@ -34,9 +34,6 @@ function Profile() {
                                     }}
                                 >
                                     <Container maxWidth='lg'>
-                                        <Typography sx={{ mb: 3 }} variant='h4'>
-                                            {user.attributes.email}
-                                        </Typography>
                                         <Grid container spacing={3}>
                                             <Grid item lg={4} md={6} xs={12}>
                                                 <AccountProfile />

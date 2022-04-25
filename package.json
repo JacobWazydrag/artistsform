@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^4.3.20",
     "mapbox-gl": "^1.13.2",
+    "material-ui-phone-number": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
