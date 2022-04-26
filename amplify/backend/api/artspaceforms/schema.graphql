@@ -6,9 +6,10 @@ type Artwork
     @model
     @auth(
         rules: [
+            { allow: owner, operations: [create, update, read, delete] }
             {
                 allow: groups
-                groups: ["owner", "admins"]
+                groups: ["admins"]
                 operations: [create, update, read, delete]
             }
         ]
@@ -17,4 +18,11 @@ type Artwork
     title: String!
     description: String
     status: String
+    file: S3Object!
+}
+
+type S3Object {
+    bucket: String!
+    region: String!
+    key: String!
 }

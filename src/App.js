@@ -11,11 +11,12 @@ import Navbar from './Components/Navbar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Copyright from './Components/copyright';
-import { Auth, Hub, API, graphqlOperation } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
-import { createArtwork } from './graphql/mutations';
-import { Button } from '@mui/material';
-
+//need this to create artwork
+// import { Auth, Hub, API, graphqlOperation } from 'aws-amplify';
+// import { createArtwork } from './graphql/mutations';
+// import { Button } from '@mui/material';
 const mdTheme = createTheme();
 
 function App() {
@@ -44,20 +45,20 @@ function App() {
         authListener();
     }, []);
 
-    const createArtworks = (event) => {
-        const artwork = {
-            id: 1,
-            title: 'number one',
-            description: 'description test',
-            status: 'sold!'
-        };
+    // const createArtworks = (event) => {
+    //     const artwork = {
+    //         id: 1,
+    //         title: 'number one',
+    //         description: 'description test',
+    //         status: 'sold!'
+    //     };
 
-        const input = {
-            artwork
-        };
-        console.log(input);
-        API.graphql(graphqlOperation(createArtwork,{ input: artwork }));
-    };
+    //     const input = {
+    //         artwork
+    //     };
+    //     console.log(input);
+    //     API.graphql(graphqlOperation(createArtwork,{ input: artwork }));
+    // };
 
     return (
         <Authenticator socialProviders={['amazon', 'facebook', 'google']}>
@@ -67,13 +68,13 @@ function App() {
                         <CssBaseline />
                         <BrowserRouter>
                             <Navbar authenticatedUser={authenticatedUser} />
-                            <Button
+                            {/* <Button
                                 onClick={() => {
                                     createArtworks();
                                 }}
                             >
                                 createArtwork
-                            </Button>
+                            </Button> */}
                             <Box
                                 component='main'
                                 sx={{
@@ -83,7 +84,6 @@ function App() {
                                             : theme.palette.grey[900],
                                     flexGrow: 1,
                                     height: '100vh',
-                                    overflow: 'hidden'
                                 }}
                             >
                                 <Toolbar />
