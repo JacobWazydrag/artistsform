@@ -21,7 +21,7 @@ export const AccountProfileDetails = (props) => {
     const [formFeedback, setFormFeedback] = useState(null);
 
     const handleChange = (event) => {
-        console.log(event);
+        // console.log(event);
         setValues({
             ...values,
             [event.target.name]: event.target.value
@@ -29,7 +29,7 @@ export const AccountProfileDetails = (props) => {
     };
 
     const updateUsers = async (user) => {
-        console.log(values);
+        // console.log(values);
         try {
             const user = await Auth.currentAuthenticatedUser();
             await Auth.updateUserAttributes(user, {

@@ -55,8 +55,7 @@ export const userAuthenticatedRouteComponents = authenticatedUserlinks.map(
                     key={index + link.title + index}
                     path={link.url}
                     element={link.component}
-                    exact
-                ></Route>
+                    exact></Route>
             );
         } else {
             return null;
@@ -88,8 +87,7 @@ export const userUnAuthenticatedRouteComponents = unAuthenticatedUserlinks.map(
                 key={index + link.title + index}
                 path={link.url}
                 element={link.component}
-                exact
-            ></Route>
+                exact></Route>
         );
     }
 );

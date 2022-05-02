@@ -12,7 +12,6 @@ import awsExports from '../aws-exports';
 Amplify.configure(awsExports);
 
 function Profile() {
-
     return (
         <Authenticator>
             {({ signOut, user }) => (
@@ -24,15 +23,13 @@ function Profile() {
                                     p: 2,
                                     display: 'flex',
                                     flexDirection: 'column'
-                                }}
-                            >
+                                }}>
                                 <Box
                                     component='main'
                                     sx={{
                                         flexGrow: 1,
                                         py: 8
-                                    }}
-                                >
+                                    }}>
                                     <Container maxWidth='lg'>
                                         <Grid container spacing={3}>
                                             <Grid item lg={4} md={6} xs={12}>

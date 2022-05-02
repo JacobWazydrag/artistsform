@@ -38,8 +38,7 @@ function TopbarContent() {
             <Toolbar
                 sx={{
                     pr: '24px' // keep right padding when drawer closed
-                }}
-            >
+                }}>
                 <IconButton
                     edge='start'
                     color='inherit'
@@ -48,8 +47,7 @@ function TopbarContent() {
                     sx={{
                         marginRight: '36px',
                         ...(open && { display: 'none' })
-                    }}
-                >
+                    }}>
                     <MenuIcon />
                 </IconButton>
                 <Typography
@@ -57,8 +55,7 @@ function TopbarContent() {
                     variant='h6'
                     color='inherit'
                     noWrap
-                    sx={{ flexGrow: 1 }}
-                >
+                    sx={{ flexGrow: 1 }}>
                     Dashboard
                 </Typography>
                 <IconButton color='inherit'>

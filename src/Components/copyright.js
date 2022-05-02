@@ -7,8 +7,7 @@ export default function Copyright(props) {
             variant='body2'
             color='text.secondary'
             align='center'
-            sx={{ pt: 4 }}
-        >
+            sx={{ pt: 4 }}>
             {'Copyright © '}
             <Link color='inherit' href='https://artspacechicago.com/'>
                 ArtSpace Chicago

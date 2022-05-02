@@ -11,7 +11,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
-import { userAuthenticatedListItems, userUnAuthenticatedListItems } from './listItems';
+import {
+    userAuthenticatedListItems,
+    userUnAuthenticatedListItems
+} from './listItems';
 
 const drawerWidth = 240;
 
@@ -66,15 +69,14 @@ function DashboardContent(props) {
         setOpen(!open);
     };
     const { authenticatedUser } = props;
-    
+
     return (
         <div>
             <AppBar position='absolute' open={open}>
                 <Toolbar
                     sx={{
                         pr: '24px' // keep right padding when drawer closed
-                    }}
-                >
+                    }}>
                     <IconButton
                         edge='start'
                         color='inherit'
@@ -83,8 +85,7 @@ function DashboardContent(props) {
                         sx={{
                             marginRight: '36px',
                             ...(open && { display: 'none' })
-                        }}
-                    >
+                        }}>
                         <MenuIcon />
                     </IconButton>
                     <Typography
@@ -92,8 +93,7 @@ function DashboardContent(props) {
                         variant='h6'
                         color='inherit'
                         noWrap
-                        sx={{ flexGrow: 1 }}
-                    >
+                        sx={{ flexGrow: 1 }}>
                         Dashboard
                     </Typography>
                     {/* <IconButton color='inherit'>
@@ -110,15 +110,16 @@ function DashboardContent(props) {
                         alignItems: 'center',
                         justifyContent: 'flex-end',
                         px: [1]
-                    }}
-                >
+                    }}>
                     <IconButton onClick={toggleDrawer}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </Toolbar>
                 <Divider />
                 <List component='nav'>
-                    {authenticatedUser ? userAuthenticatedListItems : userUnAuthenticatedListItems}
+                    {authenticatedUser
+                        ? userAuthenticatedListItems
+                        : userUnAuthenticatedListItems}
                 </List>
             </Drawer>
         </div>

@@ -17,7 +17,13 @@ import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 // import { Auth, Hub, API, graphqlOperation } from 'aws-amplify';
 // import { createArtwork } from './graphql/mutations';
 // import { Button } from '@mui/material';
-const mdTheme = createTheme();
+const mdTheme = createTheme({
+    palette: {
+        error: {
+            main: '#ff5d1a'
+        }
+    }
+});
 
 function App() {
     const [authenticatedUser, setAuthenticatedUser] = useState(false);
@@ -45,20 +51,6 @@ function App() {
         authListener();
     }, []);
 
-    // const createArtworks = (event) => {
-    //     const artwork = {
-    //         id: 1,
-    //         title: 'number one',
-    //         description: 'description test',
-    //         status: 'sold!'
-    //     };
-
-    //     const input = {
-    //         artwork
-    //     };
-    //     console.log(input);
-    //     API.graphql(graphqlOperation(createArtwork,{ input: artwork }));
-    // };
 
     return (
         <Authenticator socialProviders={['amazon', 'facebook', 'google']}>
@@ -83,9 +75,8 @@ function App() {
                                             ? theme.palette.grey[100]
                                             : theme.palette.grey[900],
                                     flexGrow: 1,
-                                    height: '100vh',
-                                }}
-                            >
+                                    height: '100%'
+                                }}>
                                 <Toolbar />
                                 <Routes>
                                     {authenticatedUser

@@ -39,5 +39,11 @@ export type AmplifyDependentResourcesAttributes = {
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
+    },
+    "storage": {
+        "artspaceartistformimages": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }

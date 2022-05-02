@@ -11,8 +11,14 @@ export const createArtwork = /* GraphQL */ `
       title
       description
       status
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -26,8 +32,14 @@ export const updateArtwork = /* GraphQL */ `
       title
       description
       status
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -41,8 +53,14 @@ export const deleteArtwork = /* GraphQL */ `
       title
       description
       status
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;

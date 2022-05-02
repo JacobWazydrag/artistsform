@@ -8,8 +8,14 @@ export const getArtwork = /* GraphQL */ `
       title
       description
       status
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -25,8 +31,14 @@ export const listArtworks = /* GraphQL */ `
         title
         description
         status
+        file {
+          bucket
+          region
+          key
+        }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
