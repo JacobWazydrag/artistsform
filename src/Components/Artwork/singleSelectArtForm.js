@@ -29,9 +29,7 @@ export default function SingleSelectArtForm(props) {
         isUploading: false
     });
     const [files, setFiles] = useState([]);
-    // const onDrop = useCallback((acceptedFiles) => {
-    //     // Do something with the files
-    // }, []);
+    
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: 'image/*',
         onDrop: (acceptedFiles) => {
@@ -105,7 +103,7 @@ export default function SingleSelectArtForm(props) {
                 title: values.title,
                 description: values.description,
                 status: values.status,
-                file
+                mainIamge: file
             };
             const result = await API.graphql(
                 graphqlOperation(createArtwork, { input })
@@ -128,13 +126,7 @@ export default function SingleSelectArtForm(props) {
     const closeDialog = () => {
         setFormFeedback(null);
     };
-
-    const requiredFieldsEntered = () => {
-      // values.map((elements, index) => {
-      //   console.log(elements, index)
-      // })
-    }
-
+    
     return (
         <Authenticator>
             {({ signOut, user }) => (
@@ -257,7 +249,7 @@ export default function SingleSelectArtForm(props) {
                             }}>
                             <Button
                                 onClick={() => createArtworks()}
-                                disabled={requiredFieldsEntered()}
+                                disabled={!values.title || !values.status || !values.description || !files.length > 0}
                                 color='primary'
                                 variant='contained'>
                                 <FileUploadIcon/>Add to Collection

@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/material';
 import { AccountProfile } from '../Components/Profile/accountProfile';
-import { AccountProfileDetails } from '../Components/Profile/accountDetails';
+import { AccountProfileDetails } from '../Components/Profile/accountForm';
 import { Amplify } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';

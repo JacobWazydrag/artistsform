@@ -25,6 +25,26 @@ const mdTheme = createTheme({
     }
 });
 
+const custom = async () => {
+    // try {
+    //     const currentUserInfo = await Auth.currentUserInfo();
+    //     const bio = currentUserInfo.attributes['custom:Bio'];
+    //     console.log(bio);
+    // } catch (err) {
+    //     console.log('error fetching user info: ', err);
+    // }
+    // try {
+    //     const user = await Auth.currentAuthenticatedUser();
+    //     const result = await Auth.updateUserAttributes(user, {
+    //         'profile': 'Strawberry'
+    //     });
+    //     console.log(result, 'success!');
+    // } catch (err) {
+    //     console.log('error fetching user info: ', err);
+    // }
+};
+custom();
+
 function App() {
     const [authenticatedUser, setAuthenticatedUser] = useState(false);
 
@@ -50,8 +70,7 @@ function App() {
     useEffect(() => {
         authListener();
     }, []);
-
-
+    
     return (
         <Authenticator socialProviders={['amazon', 'facebook', 'google']}>
             {({ signOut, user }) => (
@@ -68,6 +87,7 @@ function App() {
                                 createArtwork
                             </Button> */}
                             <Box
+                                id='main'
                                 component='main'
                                 sx={{
                                     backgroundColor: (theme) =>

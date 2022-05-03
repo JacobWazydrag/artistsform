@@ -88,7 +88,6 @@ export default function Artwork() {
                 <Grid item xs={12}>
                     <Paper
                         sx={{
-                            p: 2,
                             display: 'flex',
                             flexDirection: 'column'
                         }}>
@@ -96,7 +95,7 @@ export default function Artwork() {
                             component='main'
                             sx={{
                                 flexGrow: 1,
-                                py: 8
+                                py: 2
                             }}>
                             <Container maxWidth='lg'>
                                 <Grid container spacing={3}>
