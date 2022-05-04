@@ -23,7 +23,7 @@ export default function SingleSelectArtForm(props) {
         description: '',
         title: '',
         status: '',
-        image: '',
+        file: '',
         percentUploaded: 0,
         imagePreview: '',
         isUploading: false
@@ -103,7 +103,7 @@ export default function SingleSelectArtForm(props) {
                 title: values.title,
                 description: values.description,
                 status: values.status,
-                mainIamge: file
+                file: file
             };
             const result = await API.graphql(
                 graphqlOperation(createArtwork, { input })
@@ -113,7 +113,7 @@ export default function SingleSelectArtForm(props) {
                 description: '',
                 title: '',
                 status: '',
-                image: '',
+                file: '',
                 percentUploaded: 0,
                 imagePreview: '',
                 isUploading: false
