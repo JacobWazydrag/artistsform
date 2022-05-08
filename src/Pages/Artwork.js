@@ -20,6 +20,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 // import { useState } from 'react';
 import SingleSelectArtForm from '../Components/Artwork/singleSelectArtForm';
 import MultiSelectArtForm from '../Components/Artwork/multiSelectArtForm';
+import _ from 'lodash';
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     '& .MuiToggleButtonGroup-grouped': {
         margin: theme.spacing(0.5),
@@ -55,34 +56,72 @@ export default function Artwork() {
         setViewerIsOpen(false);
     };
     const [images, setImages] = useState([]);
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState([]);
     const onArtwork = async (prevQuery, newData) => {
         const result = await API.graphql(graphqlOperation(listArtworks));
         setImages(result.data.listArtworks.items);
     };
     const getUrl = async () => {
-        const artFilePath = images[0].file.key;
-        console.log(artFilePath);
-        try {
-            const fileAccessURL = await Storage.get(artFilePath, {
-                expires: 60
+        const urlKeyArr = [];
+        images.map((el, idx) => {
+            urlKeyArr.push(el.file.key);
+        });
+
+        let promisesOfS3Objects = urlKeyArr.map(function (key) {
+            return Storage.get(key)
+                .then(function (file) {
+                    return file;
+                })
+                .catch(function (err) {
+                    return err;
+                });
+        });
+        let promiseArr = Promise.all(promisesOfS3Objects)
+            .then((e) => {
+                return e;
+            }) // callbackSuccess is called with an array of string
+            .catch(function (err) {
+                console.log(err);
             });
-            console.log('access url', fileAccessURL);
-            setUrl(fileAccessURL);
-            // setAudioURL(fileAccessURL);
-            return;
-        } catch (error) {
-            console.error('error accessing the file from s3', error);
-            // setAudioURL('');
-            // setSongPlaying('');
-        }
+        // promiseArr
+        //     .then((r) => {
+        //         urlPathArr = r;
+        //     })
+        //     .catch((er) => {
+        //         console.log(er);
+        //     });
+        const resultingArr = await promiseArr;
+        setUrl(resultingArr);
+        // await _.map((el, idx) => {
+        // Storage.get(urlKeyArr[2])
+        //     .then((result) => console.log(result))
+        //     .catch((err) => console.log(err));
+        // });
+        // console.log(urlPathArr)
+        // await urlKeyArr.map((el, idx) => {
+        //     try {
+        //         Storage.get(el)
+        //             .then((result) => urlPathArr.push(result))
+        //             .catch((err) => console.log(err));
+        //         // const fileAccessURL = await Storage.get(el, {
+        //         //     expires: 60
+        //         // });
+        //         // console.log('access url', fileAccessURL);
+        //         // setAudioURL(fileAccessURL);
+        //     } catch (error) {
+        //         console.error('error accessing the file from s3', error);
+        //         // setAudioURL('');
+        //         // setSongPlaying('');
+        //     }
+        // });
+        // console.log(urlPathArr)
     };
 
     useEffect(() => {
         onArtwork();
     }, []);
     useEffect(() => {
-        if (images.length > 0) {
+        if (images.length > 0 && url.length === 0) {
             getUrl();
         }
     }, [images]);
@@ -160,23 +199,29 @@ export default function Artwork() {
                                 </Grid>
                             </Grid>
                         </Container>
-                        <div>
-                            <Gallery photos={photos(url)} onClick={openLightbox} />
-                            <ModalGateway>
-                                {viewerIsOpen ? (
-                                    <Modal onClose={closeLightbox}>
-                                        <Carousel
-                                            currentIndex={currentImage}
-                                            views={photos(url).map((x) => ({
-                                                ...x,
-                                                srcset: x.srcSet,
-                                                caption: x.title
-                                            }))}
-                                        />
-                                    </Modal>
-                                ) : null}
-                            </ModalGateway>
-                        </div>
+                        {url.length > 0 ? (
+                            <div style={{width: '1000'}}>
+                                <Gallery
+                                    photos={photos(url)}
+                                    onClick={openLightbox}
+                                />
+                                <ModalGateway>
+                                    {viewerIsOpen ? (
+                                        <Modal onClose={closeLightbox}>
+                                            <Carousel
+                                                currentIndex={currentImage}
+                                                views={photos(url).map((x) => ({
+                                                    ...x,
+                                                    srcset: x.srcSet,
+                                                    caption: x.title
+                                                }))}
+                                            />
+                                        </Modal>
+                                    ) : null}
+                                </ModalGateway>
+                            </div>
+                        ) : null}
+
                         {/* {images.map((element) => {
                             return (
                                 <div> */}
